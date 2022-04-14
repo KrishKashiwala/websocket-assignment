@@ -14,13 +14,13 @@ setInterval(() => {
 
 
 // max condition
-if (cOne === 10000) {
+if (cOne >= 10000) {
 	cOne = 0
 }
-if (cTwo === 10000) {
+if (cTwo >= 10000) {
 	cTwo = 0
 }
-if (cThree === 10000) {
+if (cThree >= 10000) {
 	cThree = 0
 }
 
