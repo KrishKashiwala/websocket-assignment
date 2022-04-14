@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Document</title>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.5/socket.io.min.js"></script>
+	</head>
+	<style>
+		.main-container {
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			justify-content: space-evenly;
+		}
+	</style>
+
+	<body>
+		<div class="main-container">
+			<div>
+				<h2>Counter one value :
+					<span id="span1"></span>
+				</h2>
+				<input type="checkbox" id="cOne" onclick="mid(this.id)">
+				<label for="cOne"> Checkbox 1
+				</label>
+			</div>
+			<div>
+				<h2>Counter two value :
+					<span id="span2"></span>
+				</h2>
+				<input type="checkbox" id="cTwo" onclick="mid(this.id)">
+				<label for="cTwo"> Checkbox 2
+				</label>
+			</div>
+			<div>
+				<h2>Counter three value :
+					<span id="span3"></span>
+				</h2>
+				<input type="checkbox" id="cThree" onclick="mid(this.id)">
+				<label for="cThree">Checkbox 3
+				</label>
+			</div>
+		</div>
+	</body>
+	<script>
+		// Create WebSocket connection.
+		const socket = new WebSocket('ws://localhost:3000');
+
+		// Connection opened
+		socket.addEventListener('open', function (event) {
+			console.log('Connected to WS Server')
+		});
+		// Listen for messages
+		socket.addEventListener('message', function (event) {
+			const mfg = JSON.parse(event.data)
+			console.log(mfg)
+			const span = document.querySelector(`#${mfg.uni}`)
+			span.innerHTML = mfg.msg
+		})
+		let time;
+		const mid = (id) => {
+			c = document.querySelector(`#${id}`).checked
+
+			console.log(c)
+			if (c) {
+				time = setInterval(() => {
+					socket.send(JSON.stringify({ value: c, uni: id }));
+				}, 1000)
+
+			}
+			else clearInterval(time)
+		}
+
+	</script>
+
+</html>
