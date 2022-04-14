@@ -71,15 +71,12 @@
 		// Listen for messages
 		socket.addEventListener('message', function (event) {
 			const mfg = JSON.parse(event.data)
-			console.log(mfg)
 			const span = document.querySelector(`#${mfg.uni}`)
 			span.innerHTML = mfg.msg
 		})
 		let time;
 		const mid = (id) => {
 			c = document.querySelector(`#${id}`).checked
-
-			console.log(c)
 			if (c) {
 				time = setInterval(() => {
 					socket.send(JSON.stringify({ value: c, uni: id }));
