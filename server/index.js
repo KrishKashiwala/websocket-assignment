@@ -13,7 +13,7 @@ setInterval(() => {
 }, 1000)
 
 
-// max condition
+// edge test case 
 if (cOne >= 10000) {
 	cOne = 0
 }
@@ -30,22 +30,14 @@ wss.on('connection', function connection(ws) {
 	ws.on('message', (message) => {
 		let inMessage = JSON.parse(message)
 		console.log('received:', inMessage);
-		if (inMessage.value) {
-			if (inMessage.uni == "cOne") {
-				ws.send(JSON.stringify({ msg: cOne, uni: "span1" }))
-			}
-			else if (inMessage.uni == "cTwo") {
-				ws.send(JSON.stringify({ msg: cTwo, uni: "span2" }))
-			}
-			else if (inMessage.uni == "cThree") {
-				ws.send(JSON.stringify({ msg: cThree, uni: "span3" }))
-			}
-		}
-		else {
-			cOne = 0, cTwo = 0, cThree = 0
-		}
+		ws.send(JSON.stringify({
+			cOne: cOne,
+			cTwo: cTwo,
+			cThree: cThree
+		}))
 	});
 });
+
 
 
 server.listen(3000, () => console.log(`Lisening on port :3000`))

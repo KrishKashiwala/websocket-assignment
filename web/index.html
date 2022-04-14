@@ -69,10 +69,17 @@
 			console.log('Connected to WS Server')
 		});
 		// Listen for messages
+
+
 		socket.addEventListener('message', function (event) {
+			let cOne = document.querySelector('#cOne').checked
+			let cTwo = document.querySelector('#cTwo').checked
+			let cThree = document.querySelector('#cThree').checked
 			const mfg = JSON.parse(event.data)
-			const span = document.querySelector(`#${mfg.uni}`)
-			span.innerHTML = mfg.msg
+			if (cOne) document.querySelector("#span1").innerHTML = mfg.cOne
+			if (cTwo) document.querySelector("#span2").innerHTML = mfg.cTwo
+			if (cThree) document.querySelector("#span3").innerHTML = mfg.cThree
+
 		})
 		let time;
 		const mid = (id) => {
