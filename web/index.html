@@ -9,39 +9,54 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.5/socket.io.min.js"></script>
 	</head>
 	<style>
+		.container {
+			width: 100%;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: space-evenly;
+		}
+
 		.main-container {
 			display: flex;
 			flex-direction: row;
 			align-items: center;
-			justify-content: space-evenly;
+			gap: 3em;
+			justify-content: space-between;
 		}
 	</style>
 
 	<body>
-		<div class="main-container">
-			<div>
-				<h2>Counter one value :
-					<span id="span1"></span>
-				</h2>
-				<input type="checkbox" id="cOne" onclick="mid(this.id)">
-				<label for="cOne"> Checkbox 1
-				</label>
-			</div>
-			<div>
-				<h2>Counter two value :
-					<span id="span2"></span>
-				</h2>
-				<input type="checkbox" id="cTwo" onclick="mid(this.id)">
-				<label for="cTwo"> Checkbox 2
-				</label>
-			</div>
-			<div>
-				<h2>Counter three value :
-					<span id="span3"></span>
-				</h2>
-				<input type="checkbox" id="cThree" onclick="mid(this.id)">
-				<label for="cThree">Checkbox 3
-				</label>
+
+		<div class="container">
+			<h1>
+				Web socket assignment
+			</h1>
+			<div class="main-container">
+				<div>
+					<h2>Counter one value :
+						<span id="span1"></span>
+					</h2>
+					<input type="checkbox" id="cOne" onclick="mid(this.id)">
+					<label for="cOne"> Checkbox 1
+					</label>
+				</div>
+				<div>
+					<h2>Counter two value :
+						<span id="span2"></span>
+					</h2>
+					<input type="checkbox" id="cTwo" onclick="mid(this.id)">
+					<label for="cTwo"> Checkbox 2
+					</label>
+				</div>
+				<div>
+					<h2>Counter three value :
+						<span id="span3"></span>
+					</h2>
+					<input type="checkbox" id="cThree" onclick="mid(this.id)">
+					<label for="cThree">Checkbox 3
+					</label>
+				</div>
 			</div>
 		</div>
 	</body>
